@@ -28,7 +28,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='Product name')
     slug = models.SlugField(unique=True)
-    image = models.ImageField(image='Image')
+    image = models.ImageField(verbose_name='Image')
     description = models.TextField(verbose_name='Description', null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Price')
 
