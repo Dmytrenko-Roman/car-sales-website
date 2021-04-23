@@ -12,7 +12,6 @@ User = get_user_model()
 #5 Order
 #-----------
 #6 Customer
-#7 Specification
 
 class Category(models.Model):
 
@@ -67,13 +66,3 @@ class Customer(models.Model):
 
     def __str__(self):
         return f'User {self.user.first_name} {self.user.last_name}'
-
-
-class Specification(models.Model):
-
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    name = models.CharField(max_length=255, verbose_name='Product name for specification')
-
-    def __str__(self):
-        return f'Specifications for products: {self.name}'
