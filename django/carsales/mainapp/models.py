@@ -77,11 +77,12 @@ class Customer(models.Model):
 class Car(Product):
 
     model = models.CharField(max_length=255, verbose_name='Model')
-    brand = models.CharField(max_length=255, verbose_name='Brand')
+    brand = models.CharField(max_length=255, verbose_name='Brand (Car)')
     year = models.CharField(max_length=255, verbose_name='Year')
     engine_volume = models.CharField(max_length=255, verbose_name='Engine Volume')
     country_of_purchase = models.CharField(max_length=255, verbose_name='Country Of Purchase')
+    number_of_owners = models.PositiveIntegerField(default=1, verbose_name='Number Of Owners')
 
     def __str__(self):
         return f'{self.category.name}: {self.title}'
-    
+
