@@ -86,3 +86,13 @@ class Car(Product):
     def __str__(self):
         return f'{self.category.name}: {self.title}'
 
+
+class Detail(Product):
+
+    brand = models.CharField(max_length=255, verbose_name='Brand (Detail)')
+    suitable_models = models.CharField(max_length=255, verbose_name='Suitable Models')
+    wear = models.CharField(max_length=255, verbose_name='Wear')
+
+    def __str__(self):
+        return f'{self.category.name}: {self.title}'
+
