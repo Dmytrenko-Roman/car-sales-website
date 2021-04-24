@@ -72,3 +72,16 @@ class Customer(models.Model):
 
     def __str__(self):
         return f'User {self.user.first_name} {self.user.last_name}'
+
+
+class Car(Product):
+
+    model = models.CharField(max_length=255, verbose_name='Model')
+    brand = models.CharField(max_length=255, verbose_name='Brand')
+    year = models.CharField(max_length=255, verbose_name='Year')
+    engine_volume = models.CharField(max_length=255, verbose_name='Engine Volume')
+    country_of_purchase = models.CharField(max_length=255, verbose_name='Country Of Purchase')
+
+    def __str__(self):
+        return f'{self.category.name}: {self.title}'
+    
