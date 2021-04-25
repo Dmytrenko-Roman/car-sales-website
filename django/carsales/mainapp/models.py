@@ -39,6 +39,30 @@ class Product(models.Model):
         return self.title
 
 
+class Car(Product):
+
+    model = models.CharField(max_length=255, verbose_name='Model')
+    brand = models.CharField(max_length=255, verbose_name='Brand (Car)')
+    year = models.CharField(max_length=255, verbose_name='Year')
+    engine_volume = models.CharField(max_length=255, verbose_name='Engine Volume')
+    country_of_purchase = models.CharField(max_length=255, verbose_name='Country Of Purchase')
+    number_of_owners = models.PositiveIntegerField(default=1, verbose_name='Number Of Owners')
+    is_american = models.BooleanField(default=False, verbose_name='Is American')
+
+    def __str__(self):
+        return f'{self.category.name}: {self.title}'
+
+
+class Detail(Product):
+
+    brand = models.CharField(max_length=255, verbose_name='Brand (Detail)')
+    suitable_models = models.CharField(max_length=255, verbose_name='Suitable Models')
+    wear = models.CharField(max_length=255, verbose_name='Wear')
+
+    def __str__(self):
+        return f'{self.category.name}: {self.title}'
+
+
 class FavoriteProduct(models.Model):
 
     user = models.ForeignKey('Customer', verbose_name='Buyer', on_delete=models.CASCADE)
@@ -72,28 +96,4 @@ class Customer(models.Model):
 
     def __str__(self):
         return f'User {self.user.first_name} {self.user.last_name}'
-
-
-class Car(Product):
-
-    model = models.CharField(max_length=255, verbose_name='Model')
-    brand = models.CharField(max_length=255, verbose_name='Brand (Car)')
-    year = models.CharField(max_length=255, verbose_name='Year')
-    engine_volume = models.CharField(max_length=255, verbose_name='Engine Volume')
-    country_of_purchase = models.CharField(max_length=255, verbose_name='Country Of Purchase')
-    number_of_owners = models.PositiveIntegerField(default=1, verbose_name='Number Of Owners')
-    is_american = models.BooleanField(default=False, verbose_name='Is American')
-
-    def __str__(self):
-        return f'{self.category.name}: {self.title}'
-
-
-class Detail(Product):
-
-    brand = models.CharField(max_length=255, verbose_name='Brand (Detail)')
-    suitable_models = models.CharField(max_length=255, verbose_name='Suitable Models')
-    wear = models.CharField(max_length=255, verbose_name='Wear')
-
-    def __str__(self):
-        return f'{self.category.name}: {self.title}'
 
