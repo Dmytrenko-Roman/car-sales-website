@@ -1,30 +1,22 @@
 from django.contrib import admin
-from django import forms
+from django.forms import ModelChoiceField
 
 from .models import *
-
-
-class CarCategoryChoiceField(forms.ModelChoiceField):
-    pass
 
 
 class CarAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'category':
-            return CarCategoryChoiceField(Category.objects.filter(slug='cars'))
+            return ModelChoiceField(Category.objects.filter(slug='cars'))
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
-
-
-class DetailCategoryChoiceField(forms.ModelChoiceField):
-    pass
 
 
 class DetailAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'category':
-            return CarCategoryChoiceField(Category.objects.filter(slug='details'))
+            return ModelChoiceField(Category.objects.filter(slug='details'))
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
