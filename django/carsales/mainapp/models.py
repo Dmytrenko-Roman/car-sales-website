@@ -5,15 +5,6 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 
 User = get_user_model()
 
-#-----------
-#1 Category
-#2 Product
-#3 FavoriteProduct
-#4 Favorites
-#5 Order
-#-----------
-#6 Customer
-
 class Category(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Category name')
