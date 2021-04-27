@@ -26,4 +26,5 @@ admin.site.register(Detail, DetailAdmin)
 admin.site.register(FavoriteProduct)
 admin.site.register(Favorites)
 admin.site.register(Customer)
+admin.site.register(SomeModel)
 
