@@ -1,10 +1,22 @@
+from django.forms import ModelChoiceField, ModelForm
 from django.contrib import admin
 from django.forms import ModelChoiceField
 
 from .models import *
 
 
+class CarAdminForm(ModelForm):
+
+    MIN_RESOLUTION = (400, 400)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].help_text = f'Upload images with minimal resolution {self.MIN_RESOLUTION}'
+
+
 class CarAdmin(admin.ModelAdmin):
+
+    form = CarAdminForm
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'category':
