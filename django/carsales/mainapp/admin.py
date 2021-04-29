@@ -1,9 +1,8 @@
-from django.forms import ModelChoiceField, ModelForm
+from django.forms import ModelChoiceField, ModelForm, ValidationError
 from django.contrib import admin
-from django.forms import ModelChoiceField
-
 from .models import *
 
+from PIL import Image
 
 class CarAdminForm(ModelForm):
 
@@ -12,6 +11,14 @@ class CarAdminForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['image'].help_text = f'Upload images with minimal resolution {self.MIN_RESOLUTION}'
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        img = Image.open(image)
+        min_height, min_width = self.MIN_RESOLUTION
+        if img.height < min_height or img.width < min_width:
+            raise ValidationError('Uploaded image has too small resolution')
+        return image
 
 
 class CarAdmin(admin.ModelAdmin):
