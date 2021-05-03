@@ -7,6 +7,7 @@ from PIL import Image
 class CarAdminForm(ModelForm):
 
     MIN_RESOLUTION = (400, 400)
+    MAX_RESOLUTION = (800, 700)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -16,8 +17,11 @@ class CarAdminForm(ModelForm):
         image = self.cleaned_data['image']
         img = Image.open(image)
         min_height, min_width = self.MIN_RESOLUTION
+        max_height, max_width = self.MAX_RESOLUTION
         if img.height < min_height or img.width < min_width:
             raise ValidationError('Uploaded image has too small resolution')
+        if img.height > max_height or img.width > max_width:
+            raise ValidationError('Uploaded image has too big resolution')
         return image
 
 
