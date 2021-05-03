@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://github.com/Dmytrenko-Roman/pictures-gifs/blob/main/pictures/7C9E4B27-7B97-4BA5-81A0-B6656562FA2A.png">
+    <img src="https://github.com/Dmytrenko-Roman/pictures-gifs/blob/main/pictures/car.CarSalesREADME.png">
   </a>
 
   <h1 align="center">CAR SALES WEBSITE</h1>
