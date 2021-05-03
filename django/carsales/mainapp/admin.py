@@ -1,5 +1,7 @@
 from django.forms import ModelChoiceField, ModelForm, ValidationError
 from django.contrib import admin
+from django.utils.safestring import mark_safe
+
 from .models import *
 
 from PIL import Image
@@ -11,7 +13,7 @@ class CarAdminForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['image'].help_text = f'Upload images with minimal resolution {self.MIN_RESOLUTION}'
+        self.fields['image'].help_text = mark_safe(f'<span style="color:red;">Upload images with minimal resolution {self.MIN_RESOLUTION}</span>')
 
     def clean_image(self):
         image = self.cleaned_data['image']
