@@ -76,7 +76,7 @@ class Product(models.Model):
             raise MinResolutionErrorException('Uploaded image has too small resolution')
         if img.height > max_height or img.width > max_width:
             raise MaxResolutionErrorException('Uploaded image has too big resolution')
-        return image
+        super().save(*args, **kwargs)
 
 
 class Car(Product):
