@@ -5,6 +5,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 
 from PIL import Image
 
+from io import BytesIO
+
 User = get_user_model()
 
 
@@ -68,14 +70,18 @@ class Product(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        #image = self.image
+        #img = Image.open(image)
+        #min_height, min_width = self.MIN_RESOLUTION
+        #max_height, max_width = self.MAX_RESOLUTION
+        #if img.height < min_height or img.width < min_width:
+            #raise MinResolutionErrorException('Uploaded image has too small resolution')
+        #if img.height > max_height or img.width > max_width:
+            #raise MaxResolutionErrorException('Uploaded image has too big resolution')
         image = self.image
         img = Image.open(image)
-        min_height, min_width = self.MIN_RESOLUTION
-        max_height, max_width = self.MAX_RESOLUTION
-        if img.height < min_height or img.width < min_width:
-            raise MinResolutionErrorException('Uploaded image has too small resolution')
-        if img.height > max_height or img.width > max_width:
-            raise MaxResolutionErrorException('Uploaded image has too big resolution')
+        new_img = img.convert('RGB')
+        resized_new_img = new_img.resize((200, 200), Image.ANTIALIAS)
         super().save(*args, **kwargs)
 
 
