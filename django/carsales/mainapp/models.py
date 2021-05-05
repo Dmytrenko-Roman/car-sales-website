@@ -79,6 +79,9 @@ class Car(Product):
     def __str__(self):
         return f'{self.category.name}: {self.title}'
 
+    def get_absolute_url(self):
+        return get_product_url(self, 'product_detail')
+
 
 class Detail(Product):
 
@@ -88,6 +91,9 @@ class Detail(Product):
 
     def __str__(self):
         return f'{self.category.name}: {self.title}'
+
+    def get_absolute_url(self):
+        return get_product_url(self, 'product_detail')
 
 
 class FavoriteProduct(models.Model):
