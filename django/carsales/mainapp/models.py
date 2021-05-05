@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from PIL import Image
+
+import sys
 
 from io import BytesIO
 
@@ -82,6 +85,13 @@ class Product(models.Model):
         img = Image.open(image)
         new_img = img.convert('RGB')
         resized_new_img = new_img.resize((200, 200), Image.ANTIALIAS)
+        filestream = BytesIO()
+        resized_new_img.save(filestream, 'JPEG', quality=90)
+        filestream.seek(0)
+        name = '.'.formal(self.image.name.split('.'))
+        self.image = InMemoryUploadedFile(
+            filestream, 'ImageField', name, 'jpeg/image', sys.getsizeof(filestream), None
+        )
         super().save(*args, **kwargs)
 
 
