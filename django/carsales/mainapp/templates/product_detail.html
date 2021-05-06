@@ -2,6 +2,16 @@
 
 {% block content %}
 
-{{ product.title }}
+<div class="row">
+    <div class="col-md-4">
+        <img src="{{ product.image.url }}" class="img-fluid">
+    </div>
+    <div class="col-md-8">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price }}$</p>
+        <p>Описание: {{ product.description }}</p>
+        <p>Характеристики:</p>
+    </div>
+</div>
 
 {% endblock content %}
