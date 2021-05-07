@@ -5,6 +5,45 @@
     <title>Title</title>
 </head>
 <body>
-
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Model</td>
+      <td>{{ product.model }}</td>
+    </tr>
+    <tr>
+      <td>Brand</td>
+      <td>{{ product.brand }}</td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td>{{ product.year }}</td>
+    </tr>
+    <tr>
+      <td>Engine Volume</td>
+      <td>{{ product.engine_volume }}</td>
+    </tr>
+    <tr>
+      <td>Country of purchase</td>
+      <td>{{ product.country_of_purchase }}</td>
+    </tr>
+    <tr>
+      <td>Number of owners</td>
+      <td>{{ product.number_of_owners }}</td>
+    </tr>
+    <tr>
+      <td>Is American</td>
+      <td>{{ product.is_american }}</td>
+    </tr>
+  </tbody>
+</table>
 </body>
 </html>
+
+<!--model = models.CharField(max_length=255, verbose_name='Model')-->
+<!--brand = models.CharField(max_length=255, verbose_name='Brand (Car)')-->
+<!--year = models.CharField(max_length=255, verbose_name='Year')-->
+<!--engine_volume = models.CharField(max_length=255, verbose_name='Engine Volume')-->
+<!--country_of_purchase = models.CharField(max_length=255, verbose_name='Country Of Purchase')-->
+<!--number_of_owners = models.PositiveIntegerField(default=1, verbose_name='Number Of Owners')-->
+<!--is_american = models.BooleanField(default=False, verbose_name='Is American')-->
