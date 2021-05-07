@@ -16,8 +16,9 @@
         <h3>{{ product.title }}</h3>
         <p>{{ product.price }}$</p>
         <p>Description: {{ product.description }}</p>
-        <p>Details:</p>
     </div>
+    <p class="mt-4">Details:</p>
+    {% include 'car_specification.html' %}
 </div>
 
 {% endblock content %}
