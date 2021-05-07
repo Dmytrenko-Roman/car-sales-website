@@ -18,7 +18,11 @@
         <p>Description: {{ product.description }}</p>
     </div>
     <p class="mt-4">Details:</p>
-    {% include 'car_specification.html' %}
+    {% if product.category.slug == 'cars' %}
+        {% include 'car_specification.html' %}
+    {% else %}
+        {% include 'detail_specification.html' %}
+    {% endif %}
 </div>
 
 {% endblock content %}
