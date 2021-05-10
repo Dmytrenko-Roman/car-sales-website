@@ -37,7 +37,13 @@ PRODUCT_SPEC = {
     }
 }
 
+def get_product_spec(product, model_name):
+    table_content = ''
+    for name, value in PRODUCT_SPEC[model_name].items():
+        table_content += TABLE_CONTENT.format(name=name, value=getattr(product, value))
+
+
 @register.filter
 def product_spec(product):
-    print(product)
+    model.name = product.__class__._meta.model_name
     pass
