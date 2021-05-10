@@ -1,4 +1,5 @@
 from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -47,4 +48,4 @@ def get_product_spec(product, model_name):
 @register.filter
 def product_spec(product):
     model_name = product.__class__._meta.model_name
-    return TABLE_HEAD + get_product_spec(product, model_name) + TABLE_TAIL
+    return mark_safe(TABLE_HEAD + get_product_spec(product, model_name) + TABLE_TAIL)
