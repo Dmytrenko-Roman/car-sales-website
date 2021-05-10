@@ -18,6 +18,9 @@
         <p>Description: {{ product.description }}</p>
     </div>
     <p class="mt-4">Details:</p>
+
+    {{ product|product_spec }}
+
     {% if product.category.slug == 'cars' %}
         {% include 'car_specification.html' %}
     {% else %}
