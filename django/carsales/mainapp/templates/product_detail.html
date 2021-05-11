@@ -20,12 +20,7 @@
     <p class="mt-4">Details:</p>
 
     {{ product|product_spec }}
-
-    {% if product.category.slug == 'cars' %}
-        {% include 'car_specification.html' %}
-    {% else %}
-        {% include 'detail_specification.html' %}
-    {% endif %}
+    
 </div>
 
 {% endblock content %}
