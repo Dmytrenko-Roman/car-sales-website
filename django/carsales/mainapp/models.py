@@ -83,6 +83,12 @@ class Car(Product):
     def get_absolute_url(self):
         return get_product_url(self, 'product_detail')
 
+    @property
+    def sd(self):
+        if self.sd:
+            return 'Yes'
+        return 'No'
+
 
 class Detail(Product):
 
