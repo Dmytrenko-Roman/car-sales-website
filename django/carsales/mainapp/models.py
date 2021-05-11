@@ -116,6 +116,8 @@ class Favorites(models.Model):
     products = models.ManyToManyField(FavoriteProduct, blank=True, related_name="related_favorites")
     total_products = models.PositiveIntegerField(default=0)
     final_price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='FinalPrice')
+    in_order = models.BooleanField(default=True)
+    for_anonymous_users = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.id)
