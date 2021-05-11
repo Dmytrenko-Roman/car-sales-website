@@ -107,7 +107,7 @@ class FavoriteProduct(models.Model):
     final_price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='FinalPrice')
 
     def __str__(self):
-        return f"Product: {self.product.title} (for favorites)"
+        return f"Product: {self.content_object.title} (for favorites)"
 
 
 class Favorites(models.Model):
