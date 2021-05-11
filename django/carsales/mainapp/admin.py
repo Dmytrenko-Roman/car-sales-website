@@ -8,6 +8,8 @@ from PIL import Image
 
 class CarAdmin(admin.ModelAdmin):
 
+    change_form_template = 'admin.html'
+
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'category':
             return ModelChoiceField(Category.objects.filter(slug='cars'))

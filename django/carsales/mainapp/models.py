@@ -68,6 +68,7 @@ class Product(models.Model):
 
 class Car(Product):
 
+
     model = models.CharField(max_length=255, verbose_name='Model')
     brand = models.CharField(max_length=255, verbose_name='Brand (Car)')
     year = models.CharField(max_length=255, verbose_name='Year')
