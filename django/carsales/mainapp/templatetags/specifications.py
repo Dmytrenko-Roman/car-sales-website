@@ -50,9 +50,9 @@ def get_product_spec(product, model_name):
 @register.filter
 def product_spec(product):
     model_name = product.__class__._meta.model_name
-    if isinstance(product, Car):
-        if not product.sd:
-            PRODUCT_SPEC['car'].pop('something')
-        else:
-            PRODUCT_SPEC['car']['something'] = 'something'
+    # if isinstance(product, Car):
+    #     if not product.sd:
+    #         PRODUCT_SPEC['car'].pop('something')
+    #     else:
+    #         PRODUCT_SPEC['car']['something'] = 'something'
     return mark_safe(TABLE_HEAD + get_product_spec(product, model_name) + TABLE_TAIL)
