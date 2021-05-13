@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import DetailView
 
-from .models import Car, Detail
+from .models import Car, Detail, Category
+
 
 def test_view(request):
-    return render(request, 'base.html', {})
+    categories = Category.objects.get_categories_for_bar()
+    return render(request, 'base.html', {'categories': categories})
 
 
 class ProductDetailView(DetailView):
