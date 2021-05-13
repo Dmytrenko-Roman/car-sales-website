@@ -41,6 +41,15 @@ class LatestProducts:
     objects = LatestProductsManager()
 
 
+class CategoryManager(models.Manager):
+
+    def get_queryset(self):
+        return super().get_gueryset()
+
+    def get_categories_for_bar(self):
+        qs = self.get_queryset().anotate(models.Count('car'))
+
+
 class Category(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Category name')
