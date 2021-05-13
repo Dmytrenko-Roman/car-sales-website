@@ -50,11 +50,20 @@ class LatestProducts:
 
 class CategoryManager(models.Manager):
 
+    CATEGORY_COUNT_NAME = {
+        'Cars': 'car__count',
+        'Details': 'detail_count'
+    }
+
     def get_queryset(self):
         return super().get_gueryset()
 
     def get_categories_for_bar(self):
-        qs = self.get_queryset().anotate(models.Count('car'))
+        models = get_models_for_count('car', 'detail')
+        qs = list(self.get_queryset().anotate(*models).values())
+        return [
+            dict(name=c['name'], slug=c['slug'], count=c[self.CATEGORY_COUNT_NAME[c['name']]]) for c in qs
+        ]
 
 
 class Category(models.Model):
