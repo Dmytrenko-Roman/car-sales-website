@@ -64,7 +64,7 @@
         <h1 class="my-4">Shop Name</h1>
         <div class="list-group">
           {% for category in categories %}
-          <a href="#" class="list-group-item">{{ category.name }} ({{ category.count }})</a>
+          <a href="{{ category.url }}" class="list-group-item">{{ category.name }} ({{ category.count }})</a>
           {% endfor %}
         </div>
 
