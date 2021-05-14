@@ -60,8 +60,12 @@ class CategoryManager(models.Manager):
 
     def get_categories_for_bar(self):
         models = get_models_for_count('car', 'detail')
-        qs = list(self.get_queryset().annotate(*models).values())
-        return [dict(name=c['name'], slug=c['slug'], count=c[self.CATEGORY_COUNT_NAME[c['name']]]) for c in qs]
+        qs = list(self.get_queryset().annotate(*models))
+        data = [
+            dict(name=c.name, url=c.get_absolute_url(), count=getattr(c, self.CATEGORY_COUNT_NAME[c.name]))
+            for c in qs
+        ]
+        return data
 
 
 class Category(models.Model):
