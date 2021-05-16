@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 
 from .models import Car, Detail, Category
+from .mixins import CategoryDetailMixin
 
 
 def test_view(request):
@@ -9,7 +10,7 @@ def test_view(request):
     return render(request, 'base.html', {'categories': categories})
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(CategoryDetailMixin, DetailView):
 
     CT_MODEL_MODEL_CLASS = {
         'car': Car,
@@ -26,7 +27,7 @@ class ProductDetailView(DetailView):
     slug_url_kwarg = 'slug'
 
 
-class CategoryDetailView(DetailView):
+class CategoryDetailView(CategoryDetailMixin, DetailView):
 
     model = Category
     queryset = Category.objects.all()
