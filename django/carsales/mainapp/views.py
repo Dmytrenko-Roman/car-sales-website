@@ -14,7 +14,7 @@ class BaseView(View):
             'categories': categories,
             'products': products
         }
-        return render(request, 'base.html', {'categories': context})
+        return render(request, 'base.html', context)
 
 
 class ProductDetailView(CategoryDetailMixin, DetailView):
