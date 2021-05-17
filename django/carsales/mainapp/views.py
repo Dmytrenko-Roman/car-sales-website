@@ -9,7 +9,7 @@ class BaseView(View):
 
     def get(self, request, *args, **kwargs):
         categories = Category.objects.get_categories_for_bar()
-        products = LatestProducts.objects.get_products_for_main_page()
+        products = LatestProducts.objects.get_products_for_main_page('car', 'detail')
         context = {
             'categories': categories,
             'products': products
