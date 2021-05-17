@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, View
 
-from .models import Car, Detail, Category
+from .models import Car, Detail, Category, LatestProducts
 from .mixins import CategoryDetailMixin
 
 
@@ -9,7 +9,12 @@ class BaseView(View):
 
     def get(self, request, *args, **kwargs):
         categories = Category.objects.get_categories_for_bar()
-        return render(request, 'base.html', {'categories': categories})
+        products = LatestProducts.objects.get_products_for_main_page()
+        context = {
+            'categories': categories,
+            'products': products
+        }
+        return render(request, 'base.html', {'categories': context})
 
 
 class ProductDetailView(CategoryDetailMixin, DetailView):
