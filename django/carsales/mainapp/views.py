@@ -47,7 +47,7 @@ class CategoryDetailView(CategoryDetailMixin, DetailView):
 class AddToFavoritesView(View):
 
     def get(self, request, *args, **kwargs):
-        
+
         return HttpResponseRedirect('/favorites/')
 
 
