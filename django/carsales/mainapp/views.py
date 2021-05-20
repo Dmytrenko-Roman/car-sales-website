@@ -43,9 +43,16 @@ class CategoryDetailView(CategoryDetailMixin, DetailView):
     slug_url_kwarg = 'slug'
 
 
-class FavoritesView(View):
+class AddToFavoritesView(View):
 
     def get(self, request, *args, **kwargs):
+        pass
+
+
+
+class FavoritesView(View):
+
+    def get(self, request):
         customer = Customer.objects.get(user=request.user)
         favorites = Favorites.objects.get(owner=customer)
         categories = Category.objects.get_categories_for_bar()
