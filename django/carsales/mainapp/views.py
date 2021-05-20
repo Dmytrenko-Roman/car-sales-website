@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.views.generic import DetailView, View
 
 from .models import Car, Detail, Category, LatestProducts, Customer, Favorites
@@ -46,7 +47,8 @@ class CategoryDetailView(CategoryDetailMixin, DetailView):
 class AddToFavoritesView(View):
 
     def get(self, request, *args, **kwargs):
-        pass
+        
+        return HttpResponseRedirect('/favorites/')
 
 
 
