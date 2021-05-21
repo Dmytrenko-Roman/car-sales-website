@@ -52,7 +52,8 @@ class CategoryDetailView(CategoryDetailMixin, DetailView):
 class AddToFavoritesView(View):
 
     def get(self, request, *args, **kwargs):
-
+        print(kwargs.get('ct_model'))
+        print(kwargs.get('slug'))
         return HttpResponseRedirect('/favorites/')
 
 
