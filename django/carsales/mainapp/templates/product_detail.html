@@ -17,7 +17,7 @@
         <p>{{ product.price }}$</p>
         <p>Description: {{ product.description }}</p>
         <hr>
-        <a href="#"><button class="btn btn-danger">Add to favorites</button></a>
+        <a href="{% url 'add-to-favorites' ct_model=ct_model slug=product.slug %}"><button class="btn btn-danger">Add to favorites</button></a>
     </div>
     <p class="mt-4">Details:</p>
 
