@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.contenttypes.models import ContentType
 from django.views.generic import DetailView, View
 
-from .models import Car, Detail, Category, LatestProducts, Customer, Favorites
+from .models import Car, Detail, Category, LatestProducts, Customer, Favorites, FavoriteProduct
 from .mixins import CategoryDetailMixin
 
 
@@ -52,8 +53,15 @@ class CategoryDetailView(CategoryDetailMixin, DetailView):
 class AddToFavoritesView(View):
 
     def get(self, request, *args, **kwargs):
-        print(kwargs.get('ct_model'))
-        print(kwargs.get('slug'))
+        ct_model, product_slug = kwargs.get('ct_model'), kwargs.get('slug')
+        customer = Customer.objects.get(user=request.user)
+        favorites = Favorites.objects.get(owner=customer, in_order=False)
+        content_type = ContentType.object.get(model=ct_model)
+        product = content_type.model_class().objects.get(slug=product_slug)
+        favorite_product = FavoriteProduct.objects.create(
+            user=favorites.owner, favorites=favorites, content_object=product
+        )
+        favorites.products.add(favorite_product)
         return HttpResponseRedirect('/favorites/')
 
 
