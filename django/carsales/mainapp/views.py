@@ -58,8 +58,9 @@ class AddToFavoritesView(View):
         favorites = Favorites.objects.get(owner=customer)
         content_type = ContentType.objects.get(model=ct_model)
         product = content_type.model_class().objects.get(slug=product_slug)
-        favorite_product = FavoriteProduct.objects.create(
-            user=favorites.owner, favorites=favorites, content_object=product, final_price=product.price
+        favorite_product = FavoriteProduct.objects.get_or_create(
+            user=favorites.owner, favorites=favorites, content_type=content_type,
+            object_id=product.id, final_price=product.price
         )
         favorites.products.add(favorite_product)
         return HttpResponseRedirect('/favorites/')
